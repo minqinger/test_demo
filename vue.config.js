@@ -76,7 +76,7 @@ module.exports = {
       '/pamirs': {
         // 支持跨域
         changeOrigin: true,
-        target: 'http://127.0.01:8090/'
+        target: 'http://192.168.2.56:8190/'
       }
     }
   }

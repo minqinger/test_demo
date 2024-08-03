@@ -1,6 +1,6 @@
 <template>
   <div class="custom-string-filed-wrapper">
-   字段组件
+    <input />
   </div>
 </template>
 
