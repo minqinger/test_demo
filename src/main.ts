@@ -1,3 +1,7 @@
+import { App } from 'vue'
+
+import ElementPlus from 'element-plus'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 import 'ant-design-vue/dist/antd.css';
 import 'element-plus/dist/index.css';
 
@@ -7,7 +11,7 @@ import '@kunlun/designer-common/dist/kunlun-designer-common.css';
 
 import 'reflect-metadata';
 // 顺序不能动
-import { VueOioProvider } from '@kunlun/dependencies';
+import { VueOioProvider, RuntimeContextManager } from '@kunlun/dependencies';
 import '@kunlun/ui-designer-dependencies';
 /**
  * 打开注释看资源应用的母版效果
@@ -52,5 +56,11 @@ VueOioProvider(
     },
     // theme: [themeName]
   },
-  []
+  [
+    () => {
+      const app = RuntimeContextManager.createOrReplace().frameworkInstance as App
+      app.use(ElementPlus)
+      app.use(ElementPlusIconsVue)
+    }
+  ]
 );

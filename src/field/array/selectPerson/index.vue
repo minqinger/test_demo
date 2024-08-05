@@ -4,7 +4,7 @@
       v-model:value="yhdhs"
       mode="multiple"
       style="width: 100%"
-      placeholder="Select Item..."
+      placeholder="请选择"
       :max-tag-count="maxTagCount"
       :options="options"
       :open="false"
@@ -43,7 +43,6 @@ export default defineComponent({
      */
     const personDialog = ref(false)    
     const openSelect = () => {
-      console.log(123)
       personDialog.value = true
     }
     /**

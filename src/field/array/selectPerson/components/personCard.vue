@@ -3,22 +3,22 @@
     <div class="card">
       <div class="header">
         <span>{{ title }}</span>
-        <close-circle-outlined class="hover" @click="close"/>
+        <i class="el-icon-close hover" @click="close" />
       </div>
       <div class="container">
         <div class="left">
           <div class="top center">
-            <a-input v-model:value="inputValue" allow-clear placeholder="输入姓名、岗位或部门筛选已选择的人员" />
-            <a-button shape="circle" @click="clearAll" />
+            <el-input v-model="inputValue" clearable placeholder="输入姓名、岗位或部门筛选已选择的人员" />
+            <el-button type="info" circle icon="el-icon-delete" @click="clearAll" />
           </div>
           <div class="list">
             <div class="flex" style="flex-wrap: wrap;">
-              <a-tag v-for="(item) in searchSelectList" :key="item.yhdh" closable @close="deletePerson(item)">{{ item.xm }}({{ item.dwjc }})</a-tag>
+              <el-tag v-for="(item) in searchSelectList" :key="item.yhdh" closable @close="deletePerson(item)">{{ item.xm }}({{ item.dwjc }})</el-tag>
             </div>
           </div>
           <div class="bottom flex aic">
-            <a-button type="primary" @click="submit">确 定（{{ selectPersonList.length }}）</a-button>
-            <a-button @click="close">取 消</a-button>
+            <el-button type="primary" icon="el-icon-plus" @click="submit">确 定（{{ selectPersonList.length }}）</el-button>
+            <el-button icon="el-icon-close" @click="close">取 消</el-button>
           </div>
         </div>
         <div class="right">
@@ -26,8 +26,8 @@
             <span>{{ depTreeCode[qydm] }}</span>
           </div>
           <div class="list">
-            <a-collapse v-model:activeKey="activeName" ghost>
-              <a-collapse-panel header="按部门选择" key="1">
+            <el-collapse v-model="activeName" accordion>
+              <el-collapse-item title="按部门选择" name="1">
                 <div class="collapse-div">
                   <TreeWithSearch
                     ref="tree"
@@ -36,35 +36,35 @@
                     :data="depTreeList"
                   />
                 </div>
-              </a-collapse-panel>
-              <a-collapse-panel header="按岗位选择" key="2">
+              </el-collapse-item>
+              <el-collapse-item title="按岗位选择" name="2">
                 <div class="collapse-div">
                   <ul v-if="postList && postList.length > 0">
                     <li v-for="(item, index) in postList" :key="index">
-                      <a-checkbox v-model:checked="item.check" @change="(value) => change(item, value)" />
+                      <el-checkbox v-model="item.check" @change="(value) => change(item, value)" />
                       <span>{{ item.mc }}</span>
                     </li>
                   </ul>
                   <div v-else class="no-data">暂无岗位数据</div>
                 </div>
-              </a-collapse-panel>
-              <a-collapse-panel header="按人员选择" key="3">
+              </el-collapse-item>
+              <el-collapse-item title="按人员选择" name="3">
                 <div class="collapse-div">
-                  <a-input v-model="searchValue" allow-clear style="margin-bottom: 5px;" placeholder="请输入姓名检索" />
+                  <el-input v-model="searchValue" clearable style="margin-bottom: 5px;" placeholder="请输入姓名检索" />
                   <ul v-if="personList && personList.length > 0">
                     <li v-for="(item, index) in personList" :key="index">
-                      <a-checkbox v-model:checked="item.check" @change="(value) => changePerson(item, value)" />
+                      <el-checkbox v-model="item.check" @change="(value) => changePerson(item, value)" />
                       <span>{{ item.xm }}({{ item.dwjc }})</span>
                     </li>
                   </ul>
                   <div v-else class="no-data">暂无人员数据</div>
                 </div>
-              </a-collapse-panel>
-            </a-collapse>
+              </el-collapse-item>
+            </el-collapse>
           </div>
           <div class="bottom flex aic">
-            <a-button type="primary" @click="addPerson">添 加</a-button>
-            <a-button @click="reset">重 置</a-button>
+            <el-button type="success" icon="el-icon-finished" @click="addPerson">添 加</el-button>
+            <el-button icon="el-icon-refresh" type="info" @click="reset">重 置</el-button>
           </div>
         </div>
       </div>
@@ -839,7 +839,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 100;
+  z-index: 1;
   .card{
     width: 700px;
     height: 550px;
@@ -870,7 +870,7 @@ export default {
         }
         .top{
           height: 40px;
-          :deep(.ant-input){
+          ::v-deep .el-input .el-input__inner{
             outline: none;
             border: none;
             padding-left: 0;
@@ -879,7 +879,7 @@ export default {
         .list{
           height: calc(100% - 90px);
           overflow: auto;
-          .ant-tag{
+          .el-tag{
             margin: 3px;
           }
         }
@@ -897,10 +897,14 @@ export default {
         .top{
           height: 40px;
           padding-right: 15px;
-          :deep(.ant-select .ant-input){
+          ::v-deep .el-select .el-input__inner{
             outline: none;
             border: none;
             padding-left: 0;
+          }
+          ::v-deep .el-select .el-icon-arrow-up:before {
+            content: "\e790";
+            color: #418BF7;
           }
         }
         .list{
@@ -909,6 +913,9 @@ export default {
           box-sizing: border-box;
           overflow: auto;
           padding-right: 15px;
+          ::v-deep .el-collapse-item__content{
+            padding-bottom: 10px;
+          }
           .collapse-div{
             max-height: 220px;
             width: 100%;

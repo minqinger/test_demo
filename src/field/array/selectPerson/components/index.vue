@@ -29,7 +29,7 @@
         @check="checkHandle"
       >
         <span slot-scope="{ node }" class="el-tree-node__label custom-tree-node">
-          <span :title="node.label">{{ node.label }}</span>
+          <span :title="node ? node.label : ''">{{ node ? node.label : '暂无'}}</span>
           <slot name="actionBtns" :node="node" />
         </span>
       </el-tree>
@@ -148,7 +148,7 @@ export default {
     },
     filterNode(value, data) {
       if (!value) return true
-      return data.label.indexOf(value) !== -1
+      return data && data.label.indexOf(value) !== -1
     },
     handleNodeClick(data) {
       if (data.value === this.currentKey) {
