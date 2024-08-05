@@ -1,6 +1,6 @@
 <template>
   <div class="custom-string-filed-wrapper">
-    <input />
+    12345
   </div>
 </template>
 

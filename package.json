@@ -9,15 +9,16 @@
     "dev": "vue-cli-service serve"
   },
   "dependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
     "@antv/data-set": "0.11.8",
     "@antv/g2": "4.2.0",
     "@ckeditor/ckeditor5-build-classic": "27.0.0",
     "@element-plus/icons-vue": "2.0.9",
     "@kunlun/dependencies": "~5.0.0",
-    "@kunlun/vue-ui-antd": "~5.0.0",
-    "@kunlun/vue-ui-el": "~5.0.0",
     "@kunlun/designer-common": "~5.0.0",
     "@kunlun/ui-designer-dependencies": "~5.0.0",
+    "@kunlun/vue-ui-antd": "~5.0.0",
+    "@kunlun/vue-ui-el": "~5.0.0",
     "ant-design-vue": "3.2.14",
     "echarts": "5.3.1",
     "element-plus": "2.2.17",
