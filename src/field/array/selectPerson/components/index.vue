@@ -28,10 +28,12 @@
         @node-click="handleNodeClick"
         @check="checkHandle"
       >
-        <span slot-scope="{ node }" class="el-tree-node__label custom-tree-node">
-          <span :title="node ? node.label : ''">{{ node ? node.label : '暂无'}}</span>
-          <slot name="actionBtns" :node="node" />
-        </span>
+        <template #default="{ node, data }">
+          <span class="el-tree-node__label custom-tree-node">
+            <span :title="data.label">{{ data.label }}</span>
+            <slot name="actionBtns" :node="node" />
+          </span>
+        </template>
       </el-tree>
     </div>
   </div>
@@ -115,6 +117,9 @@ export default {
       deep: true
     }
   },
+  mounted(){
+    console.log(this.data)
+  },
   methods: {
     loadNode(node, resolve) {
       this.$emit('loadNode', node, resolve)
@@ -132,7 +137,7 @@ export default {
       }
     },
     recursionCheck(currentNode, checkFlag, deepFlag) {
-      if (currentNode && currentNode.children.length !== 0) {
+      if (currentNode.children && currentNode.children.length !== 0) {
         currentNode.children.forEach(item => {
           this.recursionCheck(item, checkFlag, deepFlag)
         })
@@ -180,6 +185,10 @@ export default {
     reset(arr) {
       this.filterText = ''
       this.$refs.tree.setCheckedKeys(arr)
+    },
+    format(node){
+      console.log(node)
+      return '暂无'
     }
   }
 }

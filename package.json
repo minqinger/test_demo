@@ -20,6 +20,7 @@
     "@kunlun/vue-ui-antd": "~5.0.0",
     "@kunlun/vue-ui-el": "~5.0.0",
     "ant-design-vue": "3.2.14",
+    "dayjs": "^1.11.12",
     "echarts": "5.3.1",
     "element-plus": "2.2.17",
     "fast-xml-parser": "3.21.1",

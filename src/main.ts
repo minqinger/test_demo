@@ -60,7 +60,9 @@ VueOioProvider(
     () => {
       const app = RuntimeContextManager.createOrReplace().frameworkInstance as App
       app.use(ElementPlus)
-      app.use(ElementPlusIconsVue)
+      for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+        app.component(key, component)
+      }
     }
   ]
 );

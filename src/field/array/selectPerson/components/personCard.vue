@@ -3,13 +3,15 @@
     <div class="card">
       <div class="header">
         <span>{{ title }}</span>
-        <i class="el-icon-close hover" @click="close" />
+        <el-icon class="hover" :size="16" @click="close"><CircleCloseFilled /></el-icon>
       </div>
       <div class="container">
         <div class="left">
           <div class="top center">
-            <el-input v-model="inputValue" clearable placeholder="输入姓名、岗位或部门筛选已选择的人员" />
-            <el-button type="info" circle icon="el-icon-delete" @click="clearAll" />
+            <el-input v-model="inputValue" clearable placeholder="输入姓名、岗位或部门筛选已选择的人员" />&nbsp;
+            <el-button type="info" circle @click="clearAll" >
+              <el-icon><DeleteFilled /></el-icon>
+            </el-button>
           </div>
           <div class="list">
             <div class="flex" style="flex-wrap: wrap;">
@@ -17,8 +19,10 @@
             </div>
           </div>
           <div class="bottom flex aic">
-            <el-button type="primary" icon="el-icon-plus" @click="submit">确 定（{{ selectPersonList.length }}）</el-button>
-            <el-button icon="el-icon-close" @click="close">取 消</el-button>
+            <el-button type="primary" @click="submit">
+              <el-icon :size="16"><Plus /></el-icon>&nbsp;确 定（{{ selectPersonList.length }}）
+            </el-button>
+            <el-button @click="close"><el-icon :size="16"><Close /></el-icon>&nbsp;取 消</el-button>
           </div>
         </div>
         <div class="right">
@@ -63,8 +67,10 @@
             </el-collapse>
           </div>
           <div class="bottom flex aic">
-            <el-button type="success" icon="el-icon-finished" @click="addPerson">添 加</el-button>
-            <el-button icon="el-icon-refresh" type="info" @click="reset">重 置</el-button>
+            <el-button type="success" @click="addPerson">
+              <el-icon :size="16"><Check /></el-icon>&nbsp;添 加</el-button>
+            <el-button type="info" @click="reset">
+              <el-icon :size="16"><Refresh /></el-icon>&nbsp;重 置</el-button>
           </div>
         </div>
       </div>
@@ -75,11 +81,9 @@
 <script>
 import TreeWithSearch from './index.vue'
 import _ from 'lodash'
-import { CloseCircleOutlined } from '@ant-design/icons-vue'
 export default {
   components: {
-    TreeWithSearch,
-    CloseCircleOutlined
+    TreeWithSearch
   },
   props: {
     selected: {
@@ -818,6 +822,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.hover{
+  cursor: pointer;
+}
+.no-data{
+  display: flex;
+  justify-content: center;
+  color: rgba(0,0,0,0.5);
+  width: 100%;
+}
 .center{
   display: flex;
   align-items: center;
